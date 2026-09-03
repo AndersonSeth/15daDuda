@@ -340,6 +340,90 @@
   }
   .gift-empty{font-size:13px; color:var(--cream-dim); text-align:center; padding:20px 0;}
 
+  /* ---- sugestões de presente (estilo referência) ---- */
+  .modal-wide{max-width:560px; padding:38px 30px;}
+  .modal-wide::before, .modal-wide::after{
+    content:""; position:absolute; width:16px; height:16px;
+    border-top:1px solid var(--gold); border-left:1px solid var(--gold);
+    top:14px; left:14px;
+  }
+  .modal-wide::after{
+    top:auto; left:auto; bottom:14px; right:14px;
+    border-top:none; border-left:none;
+    border-bottom:1px solid var(--gold); border-right:1px solid var(--gold);
+  }
+  .gift-eyebrow{
+    text-align:center; font-size:12px; letter-spacing:0.18em; color:var(--gold-soft);
+    margin-bottom:14px;
+  }
+  .gift-title{
+    text-align:center;
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:500;
+    font-size:clamp(34px,8vw,44px); line-height:1.08; color:var(--cream);
+    margin:0 0 18px;
+  }
+  .gift-divider{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .gift-divider span{width:46px; height:1px; background:var(--line);}
+  .gift-divider i{width:6px; height:6px; background:var(--gold); transform:rotate(45deg); display:inline-block;}
+  .gift-intro{
+    text-align:center; font-size:14.5px; line-height:1.75; color:var(--cream-dim);
+    max-width:420px; margin:0 auto 30px;
+  }
+  .gift-section-label{
+    display:flex; align-items:center; gap:14px;
+    font-size:11px; letter-spacing:0.14em; color:var(--gold-soft);
+    margin-bottom:14px;
+  }
+  .gift-section-label::after{content:""; flex:1; height:1px; background:var(--line);}
+  .gift-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-bottom:28px;
+  }
+  .gift-tile{
+    background:var(--plum-900);
+    padding:20px 18px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .gift-num{font-size:11px; letter-spacing:0.08em; color:var(--gold-soft);}
+  .gift-tile-name{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:21px; color:var(--cream);
+  }
+  .gift-tile-note{font-size:11.5px; color:var(--cream-dim); line-height:1.4;}
+
+  .pix-block{
+    border:1px solid var(--line);
+    padding:28px 22px;
+    text-align:center;
+    margin-bottom:26px;
+  }
+  .pix-eyebrow{font-size:11px; letter-spacing:0.1em; color:var(--gold-soft); margin-bottom:14px;}
+  .pix-label-italic{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:17px; color:var(--blush); margin-bottom:8px;}
+  .pix-value{font-family:'Cormorant Garamond',serif; font-size:34px; color:var(--cream); letter-spacing:0.01em;}
+  .pix-owner{font-size:12px; color:var(--cream-dim); margin-top:6px; margin-bottom:20px;}
+  .pix-copy{
+    background:var(--gold); color:var(--plum-950); border:none;
+    padding:13px 26px; font-size:12px; letter-spacing:0.1em; font-weight:500;
+    cursor:pointer; font-family:'Jost',sans-serif;
+    transition:background 0.2s ease;
+  }
+  .pix-copy:hover{background:var(--gold-soft);}
+  .pix-copy.copied{background:#9fd1a8;}
+
+  .gift-quote{
+    text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:17px; color:var(--cream); line-height:1.5; margin-bottom:16px;
+  }
+  .gift-footer-caps{
+    text-align:center; font-size:10.5px; letter-spacing:0.14em; color:var(--gold-soft);
+  }
+
   .admin-toggle{
     font-size:11px; color:var(--cream-dim); text-align:center;
     margin-top:22px; padding-top:16px; border-top:1px solid var(--line);
@@ -482,9 +566,36 @@
 
 <!-- MODAL: PRESENTES -->
 <div class="modal-overlay" id="modal-presente">
-  <div class="modal" style="padding:14px;">
-    <button class="modal-close" onclick="closeModal('modal-presente')" style="background:rgba(26,14,22,0.55); border-radius:50%;">&times;</button>
-    <img src="presentes.jpg" alt="Sugestões de presente para a Duda" style="width:100%; display:block;">
+  <div class="modal modal-wide">
+    <button class="modal-close" onclick="closeModal('modal-presente')">&times;</button>
+    <div class="gift-eyebrow">15 ANOS · EDUARDA</div>
+    <h2 class="gift-title">Sugestões<br>de presentes</h2>
+    <div class="gift-divider"><span></span><i></i><span></span></div>
+    <div class="modal-sub gift-intro">Sua presença já é o presente maior. Se quiser levar um mimo, aqui vão algumas ideias que a Duda ama e usa no dia a dia.</div>
+
+    <div class="gift-section-label"><span>A LISTA DELA</span></div>
+
+    <div class="gift-grid">
+      <div class="gift-tile"><span class="gift-num">I</span><span class="gift-tile-name">Perfumes</span><span class="gift-tile-note">Florais e adocicados são os favoritos</span></div>
+      <div class="gift-tile"><span class="gift-num">II</span><span class="gift-tile-name">Body splash</span><span class="gift-tile-note">Aroma leve, para usar todo dia</span></div>
+      <div class="gift-tile"><span class="gift-num">III</span><span class="gift-tile-name">Maquiagem</span><span class="gift-tile-note">Batom, blush, pincéis — tudo é bem-vindo</span></div>
+      <div class="gift-tile"><span class="gift-num">IV</span><span class="gift-tile-name">Colar e brincos</span><span class="gift-tile-note">De preferência na cor prata</span></div>
+      <div class="gift-tile"><span class="gift-num">V</span><span class="gift-tile-name">Relógio</span><span class="gift-tile-note">Modelos delicados, pulseira fina</span></div>
+      <div class="gift-tile"><span class="gift-num">VI</span><span class="gift-tile-name">Tênis</span><span class="gift-tile-note">Número 35</span></div>
+      <div class="gift-tile"><span class="gift-num">VII</span><span class="gift-tile-name">Sandálias</span><span class="gift-tile-note">Número 35, salto baixo</span></div>
+      <div class="gift-tile"><span class="gift-num">VIII</span><span class="gift-tile-name">Crocs</span><span class="gift-tile-note">Número 35 — e jibbitz para enfeitar</span></div>
+    </div>
+
+    <div class="pix-block">
+      <div class="pix-eyebrow">PREFERE CONTRIBUIR POR PIX?</div>
+      <div class="pix-label-italic">Chave Pix (celular)</div>
+      <div class="pix-value">44956016875</div>
+      <div class="pix-owner">em nome de Eduarda</div>
+      <button class="pix-copy" onclick="copyPix()">COPIAR CHAVE PIX</button>
+    </div>
+
+    <div class="gift-quote">Mais do que presentes,<br>o que fica é você ali com a gente.</div>
+    <div class="gift-footer-caps">OBRIGADA POR CELEBRAR COM A DUDA</div>
   </div>
 </div>
 
@@ -533,6 +644,19 @@ renderCountdown();
 setInterval(renderCountdown, 60000);
 
 /* ---------- MODAIS ---------- */
+function copyPix(){
+  const pix = '44956016875';
+  navigator.clipboard.writeText(pix).then(()=>{
+    const btn = document.querySelector('.pix-copy');
+    const original = btn.textContent;
+    btn.textContent = 'CHAVE COPIADA ✓';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent = original; btn.classList.remove('copied'); }, 2000);
+  }).catch(()=>{
+    alert('Chave Pix: ' + pix);
+  });
+}
+
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 document.querySelectorAll('.modal-overlay').forEach(ov=>{
