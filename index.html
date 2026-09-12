@@ -140,6 +140,18 @@
     position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(26,14,22,0) 30%, var(--plum-950) 96%);
   }
+  #soundToggle{
+    position:absolute; z-index:4; top:18px; right:18px;
+    width:42px; height:42px;
+    border-radius:50%;
+    background:rgba(26,14,22,0.55);
+    border:1px solid var(--line);
+    color:var(--gold-soft);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    backdrop-filter:blur(3px);
+  }
+  #soundToggle svg{width:19px; height:19px;}
   .hero-content{
     position:relative; z-index:2;
     text-align:center;
@@ -475,6 +487,14 @@
       <!-- Substitua "video-eduarda.mp4" pelo arquivo do seu vídeo -->
       <source src="video-eduarda.mp4" type="video/mp4">
     </video>
+    <audio id="bgMusic" loop preload="auto">
+      <!-- Coloque o arquivo "musica.mp3" na mesma pasta do index.html -->
+      <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+    <button id="soundToggle" aria-label="Ativar som">
+      <svg id="iconMuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 8l4 8M21 8l-4 8" stroke-linecap="round"/></svg>
+      <svg id="iconSound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none;"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 010 6M18.5 6.5a8 8 0 010 11" stroke-linecap="round"/></svg>
+    </button>
     <div class="hero-gradient"></div>
     <div class="hero-content">
       <div class="hero-eyebrow">FESTA DE 15 ANOS</div>
@@ -622,9 +642,40 @@
 /* ---------- CAPA ---------- */
 const cover = document.getElementById('cover');
 const heroVideo = document.getElementById('heroVideo');
+const bgMusic = document.getElementById('bgMusic');
+const soundToggle = document.getElementById('soundToggle');
+const iconMuted = document.getElementById('iconMuted');
+const iconSound = document.getElementById('iconSound');
+
+function updateSoundIcon(){
+  const muted = bgMusic.muted || bgMusic.paused;
+  iconMuted.style.display = muted ? 'block' : 'none';
+  iconSound.style.display = muted ? 'none' : 'block';
+  soundToggle.setAttribute('aria-label', muted ? 'Ativar som' : 'Silenciar');
+}
+
 cover.addEventListener('click', () => {
   cover.classList.add('opened');
   heroVideo.play().catch(()=>{});
+  // usa o clique (gesto do usuário) pra já iniciar a música
+  bgMusic.volume = 0.6;
+  bgMusic.muted = false;
+  bgMusic.play().then(()=>{
+    updateSoundIcon();
+  }).catch(()=>{
+    // navegador bloqueou o autoplay com som — usuário ativa pelo botão
+    updateSoundIcon();
+  });
+});
+
+soundToggle.addEventListener('click', () => {
+  if(bgMusic.paused || bgMusic.muted){
+    bgMusic.muted = false;
+    bgMusic.play().catch(()=>{});
+  } else {
+    bgMusic.pause();
+  }
+  updateSoundIcon();
 });
 
 /* ---------- CONTAGEM REGRESSIVA ---------- */
